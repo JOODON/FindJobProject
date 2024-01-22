@@ -1,4 +1,4 @@
-package com.example.findjobproject.entitty
+package com.example.findjobproject.entitty.Category
 
 import jakarta.persistence.*
 

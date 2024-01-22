@@ -1,4 +1,4 @@
-package com.example.findjobproject.entitty
+package com.example.findjobproject.entitty.Category
 
 import jakarta.persistence.*
 
@@ -12,13 +12,13 @@ import jakarta.persistence.*
 class SubCategory(
     @Id
     @GeneratedValue
-    private val id : Long,
+    val id : Long,
 
-    private val typeOfBusiness: String,
+    val typeOfBusiness: String,
 
     @ManyToOne
     @JoinColumn(name = "Major_Category_Id")
-    private val relatedMaJorCategory : MajorCategory
+    val relatedMaJorCategory : MajorCategory
 
 ) {
     override fun toString(): String {

@@ -1,4 +1,4 @@
-package com.example.findjobproject.entitty
+package com.example.findjobproject.entitty.Category
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -16,13 +16,11 @@ import jakarta.persistence.SequenceGenerator
 class MainCategory(
 
     @Id @GeneratedValue
-    private val id : Long,
+    val id : Long,
 
-    private val typeOfBusinessCode: String,
+    val typeOfBusinessCode: String,
 
-    private val typeOfBusiness: String
-
-
+    val typeOfBusiness: String
 ) {
     override fun toString(): String {
         return "MainCategory(id=$id, typeOfBusinessCode='$typeOfBusinessCode', typeOfBusiness='$typeOfBusiness')"
