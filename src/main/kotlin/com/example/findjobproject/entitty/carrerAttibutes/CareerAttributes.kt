@@ -1,4 +1,4 @@
-package com.example.findjobproject.entitty.CarrerAttibutes
+package com.example.findjobproject.entitty.carrerAttibutes
 
 interface CareerAttributes {
     val description: String

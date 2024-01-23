@@ -1,7 +1,7 @@
 package com.example.findjobproject.entitty
 
-import com.example.findjobproject.entitty.CarrerAttibutes.Career
-import com.example.findjobproject.entitty.CarrerAttibutes.EducationLevel
+import com.example.findjobproject.entitty.carrerAttibutes.Career
+import com.example.findjobproject.entitty.carrerAttibutes.EducationLevel
 import jakarta.persistence.CollectionTable
 import jakarta.persistence.Column
 import jakarta.persistence.ElementCollection
@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
+
 @Entity
 class Satisfy(
     @Id
@@ -31,7 +32,7 @@ class Satisfy(
     @ElementCollection
     @CollectionTable(name = "certifications", joinColumns = [JoinColumn(name = "satisfy_id")])
     @Column(name = "certification")
-    val certifications: List<String>,
+    val certifications: List<String>, //자격증
 
 ) {
     override fun toString(): String {

@@ -1,8 +1,8 @@
 package com.example.findjobproject.data
 
-import com.example.findjobproject.entitty.Category.MainCategory
-import com.example.findjobproject.entitty.Category.MajorCategory
-import com.example.findjobproject.entitty.Category.SubCategory
+import com.example.findjobproject.entitty.category.MainCategory
+import com.example.findjobproject.entitty.category.MajorCategory
+import com.example.findjobproject.entitty.category.SubCategory
 
 val MainCategoryList : List<MainCategory> = listOf(
     MainCategory(1,"A","농업 임업 및 어업"),
