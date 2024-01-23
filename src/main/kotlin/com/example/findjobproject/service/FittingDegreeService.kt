@@ -24,17 +24,19 @@ class FittingDegreeService {
 
         careerData.forEach {
             val currentCareer = when (it.career) {
-                Career.FRESH.toString() -> 50
-                Career.JUNIOR.toString() -> 70
-                Career.MID.toString() -> 80
-                Career.SENIOR.toString() -> 90
-                Career.EXPERT.toString() -> 100
+                Career.FRESH.description-> 50
+                Career.JUNIOR.description -> 70
+                Career.MID.description -> 80
+                Career.SENIOR.description -> 90
+                Career.EXPERT.description -> 100
                 else -> 0
             }
+
             if (currentCareer > maxCareerLevel) {
                 maxCareerLevel = currentCareer
             }
         }
+
         return maxCareerLevel
     }
     fun educationDataCalculation(educationData: List<EducationData>): Int {
