@@ -2,7 +2,6 @@ package com.example.findjobproject.dto
 
 import java.util.Date
 
-
 //경력
 data class CareerData(
     val companyName: String,
@@ -33,6 +32,7 @@ data class SkillData(
 )
 //목록 받는 dto
 data class RequestData(
+    val companyRecruitmentId : Int?,
     val careerData: List<CareerData>,
     val educationData: List<EducationData>,
     val certificateData: List<CertificateData>,

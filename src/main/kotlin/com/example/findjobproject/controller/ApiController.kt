@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:3000/")
-class CategoryController(
+class ApiController(
     @Autowired
     private val mainCategoryService: MainCategoryService,
     private val majorCategoryService: MajorCategoryService ,
@@ -42,12 +42,14 @@ class CategoryController(
 
     @PostMapping("/selectCompany")
     fun selectAnnouncements(@RequestBody selectedData : List<SubCategory>) : List<Announcement> {
+
         return announcementService.getCompaniesByIndustry(selectedData)
     }
 
     @PostMapping("/somewhere")
     fun receiveEligibilityRequirementsData(@RequestBody eligibilityData : RequestData) : ResponseData{
         //receive (받다, 수신하다) Eligibility (자격, 적격성) Requirements (요건, 조건)
+        println(eligibilityData.companyRecruitmentId)
         return fittingDegreeService.fittingDegreeCalculation(eligibilityData)
     }
 }

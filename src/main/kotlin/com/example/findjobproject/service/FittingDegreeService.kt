@@ -1,6 +1,6 @@
 package com.example.findjobproject.service
 
-import com.example.findjobproject.data.exCompany
+import com.example.findjobproject.data.exAnnouncementNullCompany
 import com.example.findjobproject.dto.*
 import com.example.findjobproject.entitty.carrerAttibutes.Career
 import com.example.findjobproject.entitty.carrerAttibutes.EducationLevel
@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class FittingDegreeService {
+class FittingDegreeService(
+
+) {
 
     fun fittingDegreeCalculation(requestData: RequestData): ResponseData {
         return ResponseData(
@@ -61,7 +63,7 @@ class FittingDegreeService {
     fun certificateDataCalculation(certificateData: List<CertificateData>): Int {
         var level = 50  // 기본 레벨을 50
 
-        val companyAnnouncement = exCompany.satisfy.certifications.map { it }
+        val companyAnnouncement = exAnnouncementNullCompany[0].satisfy.certifications.map { it }
 
         certificateData.forEach {
             if (companyAnnouncement.contains(it.issued)) {
@@ -74,7 +76,7 @@ class FittingDegreeService {
     fun skillDataCalculation(skillData: List<SkillData>) : Int {
         var level = 50  // 기본 레벨을 50
 
-        val skill = exCompany.satisfy.skills.map { it }
+        val skill = exAnnouncementNullCompany[0].satisfy.certifications.map { it }
 
         skillData.forEach{
             if (it.equals(skill))

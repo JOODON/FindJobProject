@@ -14,4 +14,8 @@ class SubCategoryService(
     fun findAllSubCategory(): List<SubCategory>{
         return subCategoryRepository.findAll()
     }
+
+    fun findByTypeOfBusiness(type : String){
+        return subCategoryRepository.findByTypeOfBusiness(type)
+    }
 }

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SubCategoryRepository : JpaRepository<SubCategory, Long>{
+    fun findByTypeOfBusiness(type : String)
 
 }

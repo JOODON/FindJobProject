@@ -3,7 +3,6 @@ package com.example.findjobproject.entitty
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.SequenceGenerator
@@ -21,10 +20,10 @@ class Company(
     var id: Long,
 
     @OneToMany
-    val announcement: List<Announcement>, //회사 지원목록
+    val announcement: List<Announcement>? = null, //회사 지원목록
 
     @OneToOne
-    val satisfy: Satisfy, //회사
+    val satisfy: CompanySatisfy, //회사 입사 요건
 
     val name : String, //회사이름
 

@@ -2,18 +2,18 @@ package com.example.findjobproject.entitty
 
 import com.example.findjobproject.entitty.carrerAttibutes.Career
 import com.example.findjobproject.entitty.carrerAttibutes.EducationLevel
-import jakarta.persistence.CollectionTable
-import jakarta.persistence.Column
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
+import jakarta.persistence.*
+
 
 @Entity
-class Satisfy(
+@SequenceGenerator(
+    name = "CompanySatisfy_SEQ_Generator",
+    sequenceName = "CompanySatisfy_SEQ",
+    initialValue = 1, // 처음 시작키 시작값 선정
+    allocationSize = 1 // 증가값 선정
+)
+class CompanySatisfy(
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -34,8 +34,9 @@ class Satisfy(
     @Column(name = "certification")
     val certifications: List<String>, //자격증
 
-) {
+    )
+{
     override fun toString(): String {
-        return "Satisfy(id=$id, career=$career, schoolBackground=$schoolBackground, skill='$skills', certifications=$certifications)"
+        return "CompanySatisfy(id=$id, career=$career, schoolBackground=$schoolBackground, skills=$skills, certifications=$certifications)"
     }
 }
