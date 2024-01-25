@@ -2,26 +2,35 @@ package com.example.findjobproject.service
 
 import com.example.findjobproject.data.exAnnouncementNullCompany
 import com.example.findjobproject.dto.*
+import com.example.findjobproject.entitty.Company
 import com.example.findjobproject.entitty.carrerAttibutes.Career
 import com.example.findjobproject.entitty.carrerAttibutes.EducationLevel
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 
 @Service
 class FittingDegreeService(
-
+    @Autowired
+    private val companyService: CompanyService
 ) {
 
     fun fittingDegreeCalculation(requestData: RequestData): ResponseData {
+        val company = requestData.companyRecruitmentId?.let {
+            //let은 Null이 아닌경우 스코프 안에 있는 값을 실행시킴
+            companyService.findById(it.toLong())
+        }
+
         return ResponseData(
             careerDataCalculation(requestData.careerData),
             educationDataCalculation(requestData.educationData),
-            certificateDataCalculation(requestData.certificateData),
-            skillDataCalculation(requestData.skillData)
+            company?.let { certificateDataCalculation(it, requestData.certificateData) },
+            company?.let { skillDataCalculation(it, requestData.skillData) }
         )
     }
 
     fun careerDataCalculation(careerData: List<CareerData>): Int {
+        //경력에 따른 % 추출
         var maxCareerLevel = 0
 
         careerData.forEach {
@@ -60,23 +69,23 @@ class FittingDegreeService(
         return maxEducationLevel
     }
 
-    fun certificateDataCalculation(certificateData: List<CertificateData>): Int {
+    fun certificateDataCalculation(company:Company , certificateData: List<CertificateData>): Int {
         var level = 50  // 기본 레벨을 50
 
         val companyAnnouncement = exAnnouncementNullCompany[0].satisfy.certifications.map { it }
 
         certificateData.forEach {
-            if (companyAnnouncement.contains(it.issued)) {
+            if (companyAnnouncement.contains(it.qualification)) {
                 level = 100
             }
         }
         return level
     }
 
-    fun skillDataCalculation(skillData: List<SkillData>) : Int {
+    fun skillDataCalculation(company:Company , skillData: List<SkillData>) : Int {
         var level = 50  // 기본 레벨을 50
 
-        val skill = exAnnouncementNullCompany[0].satisfy.certifications.map { it }
+        val skill = exAnnouncementNullCompany[0].satisfy.skills.map { it }
 
         skillData.forEach{
             if (it.equals(skill))

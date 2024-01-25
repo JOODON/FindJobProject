@@ -24,12 +24,12 @@ class CompanySatisfy(
     @Enumerated
     val schoolBackground : EducationLevel, //고등학교 졸업 , 중학교 졸업
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "skills", joinColumns = [JoinColumn(name = "satisfy_id")])
     @Column(name = "skill")
     val skills : List<String>, //자신의 Skill
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "certifications", joinColumns = [JoinColumn(name = "satisfy_id")])
     @Column(name = "certification")
     val certifications: List<String>, //자격증

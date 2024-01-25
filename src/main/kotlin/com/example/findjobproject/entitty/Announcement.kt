@@ -1,12 +1,7 @@
 package com.example.findjobproject.entitty
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.SequenceGenerator
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
@@ -41,9 +36,10 @@ class Announcement (
 
     val industry : String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) // 즉시 조회로 값을 조회
     @JoinColumn(name = "company_id")
-    val companyRecruitmentId : Company
+    var companyRecruitmentId : Company
+
 ){
     override fun toString(): String {
         return "Announcement(id=$id, companyName='$companyName', companyGroup='$companyGroup', jobTitle='$jobTitle', jobTag='$jobTag', region='$region', career='$career', education='$education', date=$date, tag='$tag', industry='$industry', companyRecruitmentId=$companyRecruitmentId)"

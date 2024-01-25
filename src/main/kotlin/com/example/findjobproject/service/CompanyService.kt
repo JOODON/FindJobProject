@@ -19,5 +19,7 @@ class CompanyService(
             saveCompanyData(it)
         }
     }
-
+    fun findById(id : Long) : Company{
+        return companyRepository.findById(id).orElse(null)
+    }
 }

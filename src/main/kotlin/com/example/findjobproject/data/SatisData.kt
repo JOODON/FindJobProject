@@ -8,8 +8,8 @@ val ex1Satisfaction = CompanySatisfy(
     1,
     Career.SENIOR,
     EducationLevel.COLLEGE,
-    listOf("농업", "생산"),
-    listOf("종자 기능사", "종자 기사", "종자 산업 기사")
+    skills = listOf("농업", "생산"),
+    certifications = listOf("종자 기능사", "종자 기사", "종자 산업 기사")
 )
 
 val ex2Satisfaction = CompanySatisfy(

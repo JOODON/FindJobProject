@@ -1,11 +1,7 @@
 package com.example.findjobproject.entitty
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
-import jakarta.persistence.SequenceGenerator
+import com.fasterxml.jackson.annotation.JsonIgnore
+import jakarta.persistence.*
 
 @Entity
 @SequenceGenerator(
@@ -19,13 +15,14 @@ class Company(
     @GeneratedValue
     var id: Long,
 
-    @OneToMany
-    val announcement: List<Announcement>? = null, //회사 지원목록
+    @OneToMany(fetch = FetchType.EAGER) //즉시조회로 다 가지고오기
+    val announcement: MutableList<Announcement>? = null, //회사 지원목록
 
     @OneToOne
     val satisfy: CompanySatisfy, //회사 입사 요건
 
     val name : String, //회사이름
+
 
 ) {
     override fun toString(): String {
