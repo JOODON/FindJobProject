@@ -72,7 +72,11 @@ class FittingDegreeService(
     fun certificateDataCalculation(company:Company , certificateData: List<CertificateData>): Int {
         var level = 50  // 기본 레벨을 50
 
-        val companyAnnouncement = exAnnouncementNullCompany[0].satisfy.certifications.map { it }
+        println("해당 회사의 자격증 목록 ${company.satisfy.certifications}")
+
+        val companyAnnouncement = company.satisfy.certifications
+        //해당 회사의 자격증을 조회
+        //1차 통과하면 이 부분을 데이터 프론트로 넘겨주고 있는지 없는지 체크하라고 검토하는게 좋을듯
 
         certificateData.forEach {
             if (companyAnnouncement.contains(it.qualification)) {
@@ -85,13 +89,16 @@ class FittingDegreeService(
     fun skillDataCalculation(company:Company , skillData: List<SkillData>) : Int {
         var level = 50  // 기본 레벨을 50
 
-        val skill = exAnnouncementNullCompany[0].satisfy.skills.map { it }
+        println("해당 회사의 기술 목록 ${company.satisfy.skills} ")
+        //1차 통과하면 이 부분을 데이터 프론트로 넘겨주고 있는지 없는지 체크하라고 검토하는게 좋을듯
+
+        val skills = company.satisfy.skills
+        //해당 회사의 기술 목록들을 조회
 
         skillData.forEach{
-            if (it.equals(skill))
+            if (skills.contains(it.skill))
                 level = 100
         }
-
         return level
     }
 }
