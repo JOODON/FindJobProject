@@ -4,6 +4,7 @@ import com.example.findjobproject.data.SatisList
 import com.example.findjobproject.data.exAnnouncementList
 import com.example.findjobproject.data.exAnnouncementNullCompany
 import com.example.findjobproject.service.AnnouncementService
+import com.example.findjobproject.service.CategorySaveService
 import com.example.findjobproject.service.CompanyService
 import com.example.findjobproject.service.SatisfyService
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,8 +20,8 @@ class AdminController(
     @Autowired
     private val satisfyService: SatisfyService,
     private val announcementService: AnnouncementService,
-    private val companyService: CompanyService
-
+    private val companyService: CompanyService,
+    private val categorySaveService: CategorySaveService
 ) {
     @GetMapping("/satisfy/save")
     fun saveSatisfyData(){
@@ -35,6 +36,9 @@ class AdminController(
         announcementService.saveAnnouncementList(exAnnouncementList)
     }
 
-
+    @GetMapping("/category/save")
+    fun saveCategory(){
+        categorySaveService.saveCategoryAllData()
+    }
 
 }
