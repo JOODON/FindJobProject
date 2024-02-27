@@ -43,5 +43,7 @@ data class ResponseData(
     val careerData: Int?,
     val educationData: Int?,
     val certificateData: Int?,
-    val skillData: Int?
+    val skillData: Int?,
+    val certificateRequirements : List<String>?,
+    val skillRequirements : List<String>?
 )

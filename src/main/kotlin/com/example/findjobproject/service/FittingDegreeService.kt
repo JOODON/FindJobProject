@@ -25,7 +25,9 @@ class FittingDegreeService(
             careerDataCalculation(requestData.careerData),
             educationDataCalculation(requestData.educationData),
             company?.let { certificateDataCalculation(it, requestData.certificateData) },
-            company?.let { skillDataCalculation(it, requestData.skillData) }
+            company?.let { skillDataCalculation(it, requestData.skillData) },
+            company?.let { listRequiredCertificates(it,requestData.certificateData) },
+            company?.let { listRequiredSkills(it,requestData.skillData) }
         )
     }
 
@@ -101,4 +103,42 @@ class FittingDegreeService(
         }
         return level
     }
+
+    fun listRequiredCertificates(company: Company, certificateData: List<CertificateData>): List<String> {
+        val companyCertificates = company.satisfy.certifications
+
+        val userCertificates = certificateData.map { it.qualification }.also { null }
+
+        val requiredCertificates: MutableList<String> = mutableListOf()
+
+        companyCertificates.forEach { certificate->
+            if (!userCertificates.contains(certificate)){
+                requiredCertificates.add(certificate)
+            }
+        }
+        return requiredCertificates
+    }
+
+
+
+    fun listRequiredSkills(company: Company, skillData: List<SkillData>): List<String> {
+        println("해당 회사의 기술 목록 ${company.satisfy.skills}")
+
+        val companySkills = company.satisfy.skills
+        // 해당 회사의 기술 목록들을 조회
+
+        val userSkills: List<String> = skillData.map { it.skill }
+
+        val requiredSkills: MutableList<String> = mutableListOf()
+
+        companySkills.forEach { skill ->
+            if (!userSkills.contains(skill)) {
+                requiredSkills.add(skill)
+            }
+        }
+
+        return requiredSkills
+    }
+
+
 }
